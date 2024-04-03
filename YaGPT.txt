@@ -1,0 +1,22 @@
+{"libs": ["selenium"],"init":"""
+            from selenium.webdriver.chrome.options import Options
+            from selenium.webdriver.common.keys import Keys
+            from selenium.webdriver.common.alert import Alert
+            self.driver = webdriver.Chrome(options=options)
+            self.driver.get("https://ya.ru/alisa_davay_pridumaem?utm_source=landing")
+            self.chatCounter = 0
+""","generate":"""
+            self.driver.find_element("xpath",
+                                     f'/html/body/div/div/div[2]/div[2]/div/div[1]/div').send_keys(
+                prompt, Keys.ENTER)
+            self.chatCounter += 2
+""","is_generating":"""
+            text = self.get_response()
+            if len(text)>0:
+                if ("Алиса печатает..." in text) or ("Алиса думает..." in text):
+                    return True
+                else:
+                    return False
+            else:
+                return True
+"""}
