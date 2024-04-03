@@ -19,4 +19,15 @@
                     return False
             else:
                 return True
+""","get_response":"""
+            elements = self.driver.find_elements("xpath",
+                                                 f'/html/body/div/div/div[2]/div[1]/div/div/div/div[1]/div[{self.chatCounter}]/div')
+            text = ""
+            for element in elements:
+                element.find_elements()
+                try:
+                    text += element.text
+                except:
+                    pass
+            return text
 """}
